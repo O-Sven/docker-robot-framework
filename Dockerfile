@@ -83,9 +83,10 @@ RUN apk update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  && pip3 install Pillow \
-  && pip3 install numpy \
-  && pip3 install scipy \
+  && pip3 install --no-cache-dir numpy \
+  && pip3 install --no-cache-dir scipy \
+  && pip3 install --no-cache-dir Pillow \
+  
 
 # Download the glibc package for Alpine Linux from its GitHub repository
   && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
