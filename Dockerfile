@@ -72,6 +72,7 @@ RUN apk update \
     tiff-dev \
     tk-dev \
     zlib-dev\
+    openjpeg-dev\
   && apk --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
