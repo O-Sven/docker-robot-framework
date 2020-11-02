@@ -81,6 +81,11 @@ RUN apk update \
     robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
     robotframework-sshlibrary==$SSH_LIBRARY_VERSION \
     PyYAML \
+    
+# Install Pyhton Libraries for the Tests
+  && pip3 install PIL \
+  && pip3 install numpy \
+  && pip3 install scipy \
 
 # Download the glibc package for Alpine Linux from its GitHub repository
   && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
