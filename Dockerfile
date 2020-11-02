@@ -58,6 +58,20 @@ RUN apk update \
     openssl-dev \
     which \
     wget \
+    py3-numpy\
+    py3-scipy\
+    lapack\
+    # pillow dependencies
+    freetype-dev \
+    fribidi-dev \
+    harfbuzz-dev \
+    jpeg-dev \
+    lcms2-dev \
+    openjpeg-dev \
+    tcl-dev \
+    tiff-dev \
+    tk-dev \
+    zlib-dev\
   && apk --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
@@ -83,8 +97,8 @@ RUN apk update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  && pip3 install --no-cache-dir numpy \
-  && pip3 install --no-cache-dir scipy \
+  # && pip3 install --no-cache-dir numpy \
+  # && pip3 install --no-cache-dir scipy \
   && pip3 install --no-cache-dir Pillow \
   
 
