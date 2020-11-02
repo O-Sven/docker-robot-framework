@@ -60,19 +60,20 @@ RUN apk update \
     wget \
     py3-numpy\
     py3-scipy\
+    py3-pillow\
     lapack\
     # pillow dependencies
-    freetype-dev \
-    fribidi-dev \
-    harfbuzz-dev \
-    jpeg-dev \
-    lcms2-dev \
-    openjpeg-dev \
-    tcl-dev \
-    tiff-dev \
-    tk-dev \
-    zlib-dev\
-    openjpeg-dev\
+    #freetype-dev \
+    #fribidi-dev \
+    #harfbuzz-dev \
+    #jpeg-dev \
+    #lcms2-dev \
+    #openjpeg-dev \
+    #tcl-dev \
+    #tiff-dev \
+    #tk-dev \
+    #zlib-dev\
+    #openjpeg-dev\
   && apk --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
