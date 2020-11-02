@@ -83,7 +83,7 @@ RUN apk update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  && pip3 install PIL \
+  && pip3 install pillow \
   && pip3 install numpy \
   && pip3 install scipy \
 
