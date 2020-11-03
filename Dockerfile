@@ -101,7 +101,7 @@ RUN apk update \
 # Install Pyhton Libraries for the Tests
   # && pip3 install --no-cache-dir numpy \
   # && pip3 install --no-cache-dir scipy \
-   && pip3 update --no-cache-dir Pillow \
+   && pip3 install --upgrade --no-cache-dir Pillow \
   
 
 # Download the glibc package for Alpine Linux from its GitHub repository
