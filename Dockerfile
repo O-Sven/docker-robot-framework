@@ -58,9 +58,9 @@ RUN apk update \
     openssl-dev \
     which \
     wget \
+    py3-pillow\
     py3-numpy\
     py3-scipy\
-    py3-pillow\
     lapack\
     # pillow dependencies
     #freetype-dev \
