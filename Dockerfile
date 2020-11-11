@@ -1,4 +1,4 @@
-FROM python:3.8-alpine3.12
+FROM python:3.8-slim-buster
 
 MAINTAINER Paul Podgorsek <ppodgorsek@users.noreply.github.com>
 LABEL description Robot Framework in Docker.
@@ -47,9 +47,9 @@ COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
 COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
 
 # Install system dependencies
-RUN apk update \
-  && apk --no-cache upgrade \
-  && apk --no-cache --virtual .build-deps add \
+RUN apt-get update \
+  && apt-get --no-cache upgrade \
+  && apt-get --no-cache --virtual .build-deps add \
     gcc \
     libffi-dev \
     linux-headers \
@@ -58,23 +58,7 @@ RUN apk update \
     openssl-dev \
     which \
     wget \
-    # py3-pillow\
-    py3-numpy\
-    py3-scipy\
-    lapack\
-    # pillow dependencies
-    freetype-dev \
-    fribidi-dev \
-    harfbuzz-dev \
-    jpeg-dev \
-    lcms2-dev \
-    openjpeg-dev \
-    tcl-dev \
-    tiff-dev \
-    tk-dev \
-    zlib-dev\
-    openjpeg-dev\
-  && apk --no-cache add \
+  && apt-get --no-cache add \
     "chromium~$CHROMIUM_VERSION" \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
     "firefox-esr~$FIREFOX_VERSION" \
@@ -99,10 +83,7 @@ RUN apk update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  # && pip3 install --no-cache-dir numpy \
-  # && pip3 install --no-cache-dir scipy \
-   && pip3 install --upgrade --no-cache-dir Pillow \
-  
+  && pip3 install --no-cache-dir numpy scipy Pillow\
 
 # Download the glibc package for Alpine Linux from its GitHub repository
   && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
