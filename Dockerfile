@@ -55,12 +55,11 @@ RUN apt-get -y update \
     make \
     musl-dev \
     wget \
-#  && apt-get -y install \
+  && apt-get -y install \
+    xauth "xvfb-run~$XVFB_VERSION"\
 #    "chromium~$CHROMIUM_VERSION" \
 #    "chromium-chromedriver~$CHROMIUM_VERSION" \
 #    "firefox-esr~$FIREFOX_VERSION" \
-#    xauth \
-#    "xvfb-run~$XVFB_VERSION" \
 #  && mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
 #  && ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
