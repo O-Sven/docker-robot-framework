@@ -47,25 +47,22 @@ COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
 COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
 
 # Install system dependencies
-RUN apt-get update \
-  && apt-get --no-cache upgrade \
-  && apt-get --no-cache --virtual .build-deps add \
+RUN apt-get -y update \
+  && apt-get -y upgrade \
+  && apt-get -y install \
     gcc \
     libffi-dev \
-    linux-headers \
     make \
     musl-dev \
-    openssl-dev \
-    which \
     wget \
-  && apt-get --no-cache add \
-    "chromium~$CHROMIUM_VERSION" \
-    "chromium-chromedriver~$CHROMIUM_VERSION" \
-    "firefox-esr~$FIREFOX_VERSION" \
-    xauth \
-    "xvfb-run~$XVFB_VERSION" \
-  && mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
-  && ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
+#  && apt-get -y install \
+#    "chromium~$CHROMIUM_VERSION" \
+#    "chromium-chromedriver~$CHROMIUM_VERSION" \
+#    "firefox-esr~$FIREFOX_VERSION" \
+#    xauth \
+#    "xvfb-run~$XVFB_VERSION" \
+#  && mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
+#  && ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
 
 # Install Robot Framework and Selenium Library
@@ -83,26 +80,7 @@ RUN apt-get update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  && pip3 install --no-cache-dir numpy scipy Pillow\
-
-# Download the glibc package for Alpine Linux from its GitHub repository
-  && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-    && wget -q "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$ALPINE_GLIBC/glibc-$ALPINE_GLIBC.apk" \
-    && wget -q "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$ALPINE_GLIBC/glibc-bin-$ALPINE_GLIBC.apk" \
-    && apk add glibc-$ALPINE_GLIBC.apk \
-    && apk add glibc-bin-$ALPINE_GLIBC.apk \
-    && rm glibc-$ALPINE_GLIBC.apk \
-    && rm glibc-bin-$ALPINE_GLIBC.apk \
-    && rm /etc/apk/keys/sgerrand.rsa.pub \
-
-# Download Gecko drivers directly from the GitHub repository
-  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
-    && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-    && mkdir -p /opt/robotframework/drivers/ \
-    && mv geckodriver /opt/robotframework/drivers/geckodriver \
-    && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-
-  && apk del --no-cache --update-cache .build-deps
+  && pip3 install --no-cache-dir numpy scipy Pillow 
 
 # Create the default report and work folders with the default user to avoid runtime issues
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
