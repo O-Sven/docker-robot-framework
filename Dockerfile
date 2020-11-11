@@ -55,8 +55,9 @@ RUN apt-get -y update \
     make \
     musl-dev \
     wget \
-  && apt-get -y install \
-    xauth "xvfb-run~$XVFB_VERSION"\
+    xvfb \
+#  && apt-get -y install \
+#    xauth "xvfb-run~$XVFB_VERSION"\
 #    "chromium~$CHROMIUM_VERSION" \
 #    "chromium-chromedriver~$CHROMIUM_VERSION" \
 #    "firefox-esr~$FIREFOX_VERSION" \
