@@ -91,7 +91,7 @@ RUN mkdir -p ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_WORK_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${LEDSA_DIR} \
-  && chmod ugo+w ${ROBOT_REPORTS_DIR} ${ROBOT_WORK_DIR}
+  && chmod ugo+w ${ROBOT_REPORTS_DIR} ${ROBOT_WORK_DIR} ${LEDSA_DIR}
 
 # Allow any user to write logs
 RUN chmod ugo+w /var/log \
