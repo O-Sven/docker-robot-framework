@@ -47,9 +47,6 @@ ENV XVFB_VERSION 1.20
 # Prepare binarie to be executed
 COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
 
-# Copy actual ledsa version
-ADD REMOTE_LEDSA_DIR /usr/local/lib/python3.8/site-packages/
-
 # Install system dependencies
 RUN apt-get -y update \
   && apt-get -y upgrade \
