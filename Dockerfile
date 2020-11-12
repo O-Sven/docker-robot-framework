@@ -13,7 +13,7 @@ ENV ROBOT_TESTS_DIR /opt/robotframework/tests
 ENV ROBOT_WORK_DIR /opt/robotframework/temp
 
 # Set ledsa path, should be overwritten in the yml file
-ENV REMOTE_LEDSA_DIR /opt
+ENV LEDSA_DIR /usr/local/lib/python3.8/site-packages/ledsa
 
 # Setup X Window Virtual Framebuffer
 ENV SCREEN_COLOUR_DEPTH 24
@@ -87,8 +87,10 @@ RUN apt-get -y update \
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
 RUN mkdir -p ${ROBOT_REPORTS_DIR} \
   && mkdir -p ${ROBOT_WORK_DIR} \
+  && mkdir -p ${LEDSA_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_WORK_DIR} \
+  && chown ${ROBOT_UID}:${ROBOT_GID} ${LEDSA_DIR} \
   && chmod ugo+w ${ROBOT_REPORTS_DIR} ${ROBOT_WORK_DIR}
 
 # Allow any user to write logs
