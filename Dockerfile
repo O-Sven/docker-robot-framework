@@ -12,6 +12,9 @@ ENV ROBOT_TESTS_DIR /opt/robotframework/tests
 # Set the working directory environment variable
 ENV ROBOT_WORK_DIR /opt/robotframework/temp
 
+# Set ledsa path, should be overwritten in the yml file
+ENV REMOTE_LEDSA_DIR /opt
+
 # Setup X Window Virtual Framebuffer
 ENV SCREEN_COLOUR_DEPTH 24
 ENV SCREEN_HEIGHT 1080
@@ -41,10 +44,11 @@ ENV SELENIUM_LIBRARY_VERSION 4.3.0
 ENV SSH_LIBRARY_VERSION 3.4.0
 ENV XVFB_VERSION 1.20
 
-# Prepare binaries to be executed
-COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
-COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
+# Prepare binarie to be executed
 COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
+
+# Copy actual ledsa version
+ADD REMOTE_LEDSA_DIR /usr/local/lib/python3.8/site-packages/
 
 # Install system dependencies
 RUN apt-get -y update \
