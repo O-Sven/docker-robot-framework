@@ -81,7 +81,7 @@ RUN apt-get -y update \
     PyYAML \
     
 # Install Pyhton Libraries for the Tests
-  && pip3 install --no-cache-dir numpy scipy Pillow matplotlib
+  && pip3 install --no-cache-dir numpy scipy Pillow matplotlib rawpy
 
 # Create the default report and work folders with the default user to avoid runtime issues
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
